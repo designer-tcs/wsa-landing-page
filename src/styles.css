@@ -1,0 +1,289 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+/* Wellsprings Academy brand fonts (Lora, Inter, JetBrains Mono) are loaded via <link> in the root head */
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Wellsprings brand families exposed as Tailwind color utilities */
+  --color-ws-ink: var(--ws-ink);
+  --color-ws-paper: var(--ws-paper);
+
+  --color-grey-200: var(--grey-200);
+  --color-grey-300: var(--grey-300);
+  --color-grey-400: var(--grey-400);
+  --color-grey-500: var(--grey-500);
+  --color-grey-600: var(--grey-600);
+  --color-grey-700: var(--grey-700);
+  --color-grey-800: var(--grey-800);
+  --color-grey-900: var(--grey-900);
+  --color-grey-1000: var(--grey-1000);
+
+  /* Brand 4 — exposed at every tint */
+  --color-coral-200: var(--coral-200);
+  --color-coral-600: var(--coral-600);
+  --color-coral-1000: var(--coral-1000);
+
+  --color-sun-200: var(--sun-200);
+  --color-sun-600: var(--sun-600);
+  --color-sun-1000: var(--sun-1000);
+
+  --color-sage-200: var(--sage-200);
+  --color-sage-600: var(--sage-600);
+  --color-sage-1000: var(--sage-1000);
+
+  --color-slate-200: var(--slate-200);
+  --color-slate-600: var(--slate-600);
+  --color-slate-1000: var(--slate-1000);
+
+  --font-serif: "Lora", "Iowan Old Style", Georgia, serif;
+  --font-sans: "Inter", "Helvetica Neue", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+:root {
+  --radius: 0;
+
+  /* shadcn semantic — kept neutral so any UI primitives still render correctly */
+  --background: oklch(0.99 0.005 80);
+  --foreground: oklch(0.2 0.02 250);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.2 0.02 250);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.2 0.02 250);
+  --primary: oklch(0.32 0.04 250);
+  --primary-foreground: oklch(0.99 0.005 80);
+  --secondary: oklch(0.97 0.01 80);
+  --secondary-foreground: oklch(0.2 0.02 250);
+  --muted: oklch(0.97 0.01 80);
+  --muted-foreground: oklch(0.5 0.02 250);
+  --accent: oklch(0.97 0.01 80);
+  --accent-foreground: oklch(0.2 0.02 250);
+  --destructive: oklch(0.65 0.18 28);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.88 0.01 80);
+  --input: oklch(0.88 0.01 80);
+  --ring: oklch(0.6 0.04 250);
+
+  /* ===== Wellsprings Academy brand identity tokens ===== */
+  /* Ink = primary type color (deep slate, from logo dark). Paper = warm off-white. */
+  --ws-ink: #354251;
+  --ws-paper: #fbf8f1;
+
+  /* Grey — warm-leaning, calibrated for the paper background */
+  --grey-200: #f1ede4;
+  --grey-300: #e6e0d2;
+  --grey-400: #cfc7b6;
+  --grey-500: #aaa291;
+  --grey-600: #837c6c;
+  --grey-700: #5f594b;
+  --grey-800: #3f3a30;
+  --grey-900: #2a261f;
+  --grey-1000: #161310;
+
+  /* Coral — MIND / Think — the bird's body */
+  --coral-200: #fae0d8;
+  --coral-300: #f3bdaa;
+  --coral-400: #ec947a;
+  --coral-500: #df6856;
+  --coral-600: #cf4e3c;
+  --coral-700: #a83a2c;
+  --coral-800: #7c2a20;
+  --coral-900: #521c15;
+  --coral-1000: #2c0f0b;
+
+  /* Sun — BODY / Build — the yellow flame */
+  --sun-200: #fbf3c8;
+  --sun-300: #f7e89a;
+  --sun-400: #f2db6a;
+  --sun-500: #efdd5d;
+  --sun-600: #d4be3f;
+  --sun-700: #a4912a;
+  --sun-800: #75681e;
+  --sun-900: #4d4514;
+  --sun-1000: #2b2709;
+
+  /* Sage — HEART / Belong — the green flame */
+  --sage-200: #e1efe5;
+  --sage-300: #bcdcc6;
+  --sage-400: #9bcaab;
+  --sage-500: #80c097;
+  --sage-600: #5fa57b;
+  --sage-700: #468060;
+  --sage-800: #305b45;
+  --sage-900: #1f3c2d;
+  --sage-1000: #0f2118;
+
+  /* Variant-2 warm grounds — richer colour play, same brand family */
+  --v2-blush: #fbeee7;
+  --v2-mist: #eaf2e9;
+  --v2-sand: #fdf6dd;
+
+  /* Slate — institutional anchor, the wordmark color */
+  --slate-200: #dfe3e8;
+  --slate-300: #b9c1cb;
+  --slate-400: #8995a3;
+  --slate-500: #5d6b7c;
+  --slate-600: #354251;
+  --slate-700: #2a3540;
+  --slate-800: #1f2630;
+  --slate-900: #141920;
+  --slate-1000: #0a0d11;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html,
+  body {
+    background-color: var(--ws-paper);
+    color: var(--ws-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Headings use the serif — matches the logo's Cormorant-style wordmark */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    line-height: 1.1;
+  }
+
+  p,
+  li {
+    line-height: 1.55;
+  }
+
+  code,
+  pre,
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  /* Editorial rule — matches Wellsprings ink, not pure black */
+  .sl-rule {
+    border-top: 1px solid var(--ws-ink);
+  }
+
+  .sl-section-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+}
+
+@keyframes ws-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+@keyframes ws-twinkle { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+@keyframes ws-spin { to { transform: rotate(360deg); } }
+.ws-breathe { transform-box: fill-box; transform-origin: center; animation: ws-breathe 4.5s ease-in-out infinite; }
+.ws-twinkle { animation: ws-twinkle 3s ease-in-out infinite; }
+.ws-ring { transform-box: fill-box; transform-origin: center; animation: ws-spin 60s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .ws-breathe, .ws-twinkle, .ws-ring { animation: none; } }
+
+@keyframes tbb-pop{from{opacity:0;transform:scale(.86)}to{opacity:1;transform:scale(1)}}
+@keyframes tbb-draw{to{stroke-dashoffset:0}}
+@keyframes tbb-up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes tbb-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes tbb-tw{0%,100%{opacity:.35}50%{opacity:1}}
+@keyframes tbb-spin{to{transform:rotate(360deg)}}
+.wc .pillar{opacity:0;transform-box:fill-box;transform-origin:center}
+.wc .glyph,.wc .ring{transform-box:fill-box;transform-origin:center}
+.wc .draw,.wc .thread{stroke-dasharray:1;stroke-dashoffset:1}
+.wc .tw,.wc .lbl{opacity:0}
+.wc.in-view .thread{animation:tbb-draw 1.4s ease forwards}
+.wc.in-view .p1{animation:tbb-pop .8s ease-out .15s forwards}
+.wc.in-view .p2{animation:tbb-pop .8s ease-out .45s forwards}
+.wc.in-view .p3{animation:tbb-pop .8s ease-out .75s forwards}
+.wc.in-view .ring{animation:tbb-spin 60s linear infinite}
+.wc.in-view .glyph{animation:tbb-breathe 4.5s ease-in-out 2.2s infinite}
+.wc.in-view .draw{animation:tbb-draw 1s ease forwards}
+.wc.in-view .tw{animation:tbb-tw 3s ease-in-out 2.4s infinite}
+.wc.in-view .lbl{animation:tbb-up .6s ease forwards}
+@media (prefers-reduced-motion:reduce){.wc .pillar,.wc .glyph,.wc .draw,.wc .tw,.wc .thread,.wc .lbl,.wc .ring{opacity:1!important;stroke-dashoffset:0!important;transform:none!important;animation:none!important}}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+/* intl-tel-input — scoped so site fonts (Lora / Inter / JetBrains Mono) stay unchanged */
+.ws-phone {
+  width: 100%;
+  font-family: var(--font-sans);
+}
+.ws-phone .iti,
+.ws-phone .iti input,
+.ws-phone .iti__selected-dial-code,
+.ws-phone .iti__country-name,
+.ws-phone .iti__dial-code,
+.ws-phone .iti__search-input {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--ws-ink);
+}
+.ws-phone .iti {
+  width: 100%;
+  display: block;
+}
+.ws-phone .ws-phone-input,
+.ws-phone .iti input.ws-phone-input,
+.ws-phone .iti input[type="tel"] {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--grey-300);
+  border-radius: 0;
+  background: #fff;
+  color: var(--ws-ink);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.25;
+  padding: 0.75rem 0.875rem;
+  outline: none;
+}
+.ws-phone .iti input[type="tel"]:focus {
+  border-color: var(--ws-ink);
+}
+.ws-phone--error .iti input[type="tel"] {
+  border-color: var(--coral-600);
+}
+.iti--detached-country-selector {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--ws-ink);
+  z-index: 80;
+}
