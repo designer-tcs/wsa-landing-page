@@ -1,9 +1,8 @@
 import { Outlet, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import { Phone, CalendarCheck } from "lucide-react";
 import appCss from "../styles.css?url";
 import logoMark from "@/assets/wellsprings-logo.png";
-import { initLeadTracking } from "@/lib/leads/tracking";
 import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/leads/contact";
 import { LeadCta, LeadFormProvider } from "@/components/landing/LeadFormModal";
 
@@ -66,10 +65,6 @@ function RootShell({ children }: { children: ReactNode }) {
 }
 
 function RootComponent() {
-  useEffect(() => {
-    initLeadTracking();
-  }, []);
-
   return (
     <LeadFormProvider>
       <div className="flex min-h-screen flex-col bg-[var(--ws-paper)] text-[var(--ws-ink)]">

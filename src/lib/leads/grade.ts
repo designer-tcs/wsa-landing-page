@@ -12,8 +12,3 @@ export const GRADE_OPTIONS = [
   "Grade 8",
   "Grade 9",
 ] as const;
-
-/** Zoho expects Class 1… not Grade 1…. Nursery / LKG / UKG stay as-is. */
-export function toCrmGrade(grade: string): string {
-  return grade.replace(/\bGrade\b/g, "Class");
-}
