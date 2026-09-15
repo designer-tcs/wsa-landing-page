@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { ArrowRight, Check, Phone } from "lucide-react";
 import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/leads/contact";
+import { toE164, validatePhoneForCountry } from "@/lib/leads/countries";
 import { GRADE_OPTIONS } from "@/lib/leads/grade";
 import { splitParentName } from "@/lib/leads/names";
 import { enquiryFormSchema, visitBookingFormSchema } from "@/lib/leads/schemas";
@@ -37,16 +38,11 @@ function FormError({ message }: { message: string }) {
 }
 
 function phoneFromForm(fd: FormData): { phone: string; error: string | null } {
-  const phone = String(fd.get("mobile") ?? "").trim();
-  const valid = String(fd.get("phoneValid") ?? "") === "1";
   const iso = String(fd.get("countryIso") ?? "IN").toUpperCase();
-
-  if (!phone) return { phone, error: "Please enter a phone number" };
-  if (!valid) {
-    if (iso === "IN") return { phone, error: "Please enter a valid 10-digit Indian mobile number" };
-    return { phone, error: "Please enter a valid phone number for the selected country" };
-  }
-  return { phone, error: null };
+  const national = String(fd.get("phoneNational") ?? "").trim();
+  const error = validatePhoneForCountry(iso, national);
+  if (error) return { phone: "", error };
+  return { phone: toE164(iso, national), error: null };
 }
 
 export function VisitForm() {
